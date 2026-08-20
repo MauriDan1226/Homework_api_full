@@ -1,4 +1,4 @@
-# web_project_api_full
+# web_project_hw_api_full
 
 Gestor de tareas completo con autenticacion de usuarios, tablero Kanban y vista de lista. Cada
 persona registrada gestiona unicamente sus propias tareas: la propiedad se comprueba tanto en el
@@ -30,7 +30,7 @@ cliente como en el servidor.
 ## Estructura del proyecto
 
 ```
-web_project_api_full/
+web_project_hw_api_full/
 ├── backend/
 │   ├── controllers/      Logica de usuarios y tareas
 │   ├── models/           Esquemas de Mongoose
