@@ -20,8 +20,14 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   box-shadow: var(--shadow-lg);
-  outline: none;
   animation: modal-panel-in 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* El panel recibe el foco al abrirse por accesibilidad, pero no es un
+   elemento navegable: no debe mostrar el anillo de foco */
+.modal__panel:focus,
+.modal__panel:focus-visible {
+  outline: none;
 }
 
 .modal__header {
