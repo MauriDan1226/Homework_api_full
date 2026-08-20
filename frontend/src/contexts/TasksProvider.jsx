@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import * as api from '../utils/api';
 import { TASK_STATUSES } from '../utils/constants';
+import { sortTasks } from '../utils/sorting';
 import { useAuth } from './AuthContext';
 import { TasksContext } from './TasksContext';
 
@@ -10,8 +11,9 @@ const INITIAL_FILTERS = { status: '', priority: '' };
 export function TasksProvider({ children }) {
   const { token, signOut } = useAuth();
 
-  // El servidor devuelve la lista ya ordenada; el filtrado se resuelve aqui
-  // para que los contadores sigan reflejando el total real de tareas.
+  // El servidor devuelve la lista ya ordenada, pero el orden se reaplica aqui
+  // para que crear o editar una tarea no la deje fuera de sitio. El filtrado
+  // tambien es local, para que los contadores reflejen el total real.
   const [tasks, setTasks] = useState([]);
   const [filters, setFilters] = useState(INITIAL_FILTERS);
   const [sort, setSort] = useState('dueDate');
@@ -119,15 +121,15 @@ export function TasksProvider({ children }) {
 
   const moveTask = useCallback((id, status) => editTask(id, { status }), [editTask]);
 
-  const visibleTasks = useMemo(
-    () =>
-      tasks.filter((task) => {
-        if (filters.status && task.status !== filters.status) return false;
-        if (filters.priority && task.priority !== filters.priority) return false;
-        return true;
-      }),
-    [tasks, filters]
-  );
+  const visibleTasks = useMemo(() => {
+    const filtered = tasks.filter((task) => {
+      if (filters.status && task.status !== filters.status) return false;
+      if (filters.priority && task.priority !== filters.priority) return false;
+      return true;
+    });
+
+    return sortTasks(filtered, sort);
+  }, [tasks, filters, sort]);
 
   // Los contadores se calculan sobre el total, no sobre lo filtrado
   const counts = useMemo(() => {
