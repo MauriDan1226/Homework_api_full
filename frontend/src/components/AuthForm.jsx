@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Alert from './Alert';
+import BrandMark from './BrandMark';
 import '../styles/auth.css';
 
 // Formulario compartido por registro e inicio de sesion: cambia el modo con la
@@ -55,7 +56,7 @@ function AuthForm({ isSignUp, onSubmit, isSubmitting, errorMessage, onDismissErr
     <div className="auth">
       <section className="auth__panel">
         <div className="auth__brand">
-          <span className="auth__logo" aria-hidden="true" />
+          <BrandMark size={32} />
           <span className="auth__brand-name">Tareas</span>
         </div>
 

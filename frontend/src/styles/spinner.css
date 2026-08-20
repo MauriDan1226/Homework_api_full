@@ -12,18 +12,21 @@
   min-height: 60vh;
 }
 
+/* Anillo con degradado de marca: se recorta el centro con una mascara conica
+   para no depender de cuatro bordes de colores distintos. */
 .spinner__ring {
-  width: 34px;
-  height: 34px;
-  border: 3px solid var(--color-border-strong);
-  border-top-color: var(--color-accent);
+  width: 38px;
+  height: 38px;
+  background-image: conic-gradient(from 0deg, transparent 0%, #7c5cff 55%, #f5a65b 100%);
   border-radius: 50%;
-  animation: spinner-rotate 750ms linear infinite;
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 0);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 0);
+  animation: spinner-rotate 800ms linear infinite;
 }
 
 .spinner__label {
   font-size: 0.9rem;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.005em;
 }
 
 @keyframes spinner-rotate {

@@ -1,49 +1,78 @@
 :root {
-  /* Paleta oscura con acento indigo */
-  --color-bg: #0b0d13;
-  --color-surface: #12151f;
-  --color-surface-raised: #181c29;
-  --color-surface-hover: #1f2434;
-  --color-border: #262b3b;
-  --color-border-strong: #333a4f;
+  /* Fondos: negro con un matiz frio, para que el color de acento respire */
+  --color-bg: #06060a;
+  --color-bg-elevated: #0b0b12;
 
-  --color-text: #e8eaf2;
-  --color-text-muted: #9aa2bb;
-  --color-text-faint: #6b7490;
+  /* Las superficies son blanco translucido, no grises solidos: asi recogen el
+     color de la aurora del fondo y ganan profundidad al apilarse. */
+  --color-surface: rgba(255, 255, 255, 0.035);
+  --color-surface-solid: #101018;
+  --color-surface-raised: rgba(255, 255, 255, 0.055);
+  --color-surface-hover: rgba(255, 255, 255, 0.09);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.17);
 
-  --color-accent: #6366f1;
-  --color-accent-hover: #7c7ff5;
-  --color-accent-soft: rgba(99, 102, 241, 0.14);
+  --color-text: #f5f4f8;
+  --color-text-muted: #a5a3b8;
+  --color-text-faint: #6f6d85;
 
-  --color-danger: #f4557a;
-  --color-danger-soft: rgba(244, 85, 122, 0.14);
-  --color-success: #34d399;
-  --color-success-soft: rgba(52, 211, 153, 0.14);
-  --color-warning: #fbbf24;
-  --color-warning-soft: rgba(251, 191, 36, 0.14);
-  --color-info: #38bdf8;
-  --color-info-soft: rgba(56, 189, 248, 0.14);
+  /* Acento de marca: violeta, con magenta y ambar como notas de apoyo. Los tres
+     salen de la ilustracion de la aurora del acceso. */
+  --color-accent: #8b5cf6;
+  --color-accent-hover: #a78bfa;
+  --color-accent-soft: rgba(139, 92, 246, 0.16);
+  --color-accent-magenta: #e056c8;
+  --color-accent-amber: #f5a65b;
+
+  --gradient-brand: linear-gradient(115deg, #7c5cff 0%, #c44fe8 48%, #f5a65b 100%);
+  --gradient-brand-dim: linear-gradient(
+    115deg,
+    rgba(124, 92, 255, 0.9) 0%,
+    rgba(196, 79, 232, 0.9) 48%,
+    rgba(245, 166, 91, 0.9) 100%
+  );
+
+  --color-danger: #ff5573;
+  --color-danger-soft: rgba(255, 85, 115, 0.14);
+  --color-success: #35e0a1;
+  --color-success-soft: rgba(53, 224, 161, 0.14);
+  --color-warning: #ffb44d;
+  --color-warning-soft: rgba(255, 180, 77, 0.14);
+  --color-info: #58c7f5;
+  --color-info-soft: rgba(88, 199, 245, 0.14);
 
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 18px;
+  --radius-xl: 26px;
   --radius-full: 999px;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 30px 70px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 12px 34px rgba(124, 92, 255, 0.35);
+
+  /* Filo superior claro: imita como la luz roza el borde de un panel de vidrio */
+  --edge-light: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  --edge-light-strong: inset 0 1px 0 rgba(255, 255, 255, 0.13);
 
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 24px;
   --space-xl: 36px;
+  --space-2xl: 56px;
 
   --transition-fast: 140ms ease;
   --transition-base: 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-slow: 420ms cubic-bezier(0.22, 1, 0.36, 1);
 
   --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', 'Segoe UI', system-ui, sans-serif;
 
-  --header-height: 64px;
-  --content-max-width: 1240px;
+  --header-height: 68px;
+  --content-max-width: 1280px;
+
+  /* Grano de pelicula: rompe las superficies planas y quita el aspecto "plantilla" */
+  --texture-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
 }

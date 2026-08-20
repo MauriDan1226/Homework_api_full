@@ -1,3 +1,4 @@
+import BrandMark from './BrandMark';
 import { useAuth } from '../contexts/AuthContext';
 import '../styles/header.css';
 
@@ -18,7 +19,7 @@ function Header() {
     <header className="header">
       <div className="header__inner">
         <div className="header__brand">
-          <span className="header__logo" aria-hidden="true" />
+          <BrandMark size={28} />
           <span className="header__brand-name">Tareas</span>
         </div>
 

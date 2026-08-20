@@ -14,19 +14,56 @@ body,
   min-height: 100%;
 }
 
-body {
-  margin: 0;
+html {
   background-color: var(--color-bg);
-  background-image:
-    radial-gradient(1000px 500px at 12% -8%, rgba(99, 102, 241, 0.16), transparent 65%),
-    radial-gradient(800px 460px at 92% 0%, rgba(56, 189, 248, 0.1), transparent 60%);
-  background-attachment: fixed;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  background-color: transparent;
   color: var(--color-text);
   font-family: var(--font-sans);
   font-size: 16px;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'ss01';
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Aurora del fondo. Se queda fija detras de todo y va cambiando muy despacio,
+   lo justo para que la pantalla no parezca una imagen estatica. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  background-image:
+    /* Vineta: mantiene los bordes oscuros para que el texto nunca compita con el fondo */
+    radial-gradient(115% 85% at 50% 34%, transparent 34%, rgba(6, 6, 10, 0.82) 100%),
+    radial-gradient(46% 40% at 12% 4%, rgba(124, 92, 255, 0.55), transparent 64%),
+    radial-gradient(40% 36% at 86% 0%, rgba(224, 86, 200, 0.4), transparent 62%),
+    radial-gradient(44% 38% at 80% 84%, rgba(245, 166, 91, 0.26), transparent 64%),
+    radial-gradient(48% 42% at 2% 76%, rgba(88, 199, 245, 0.22), transparent 64%);
+  filter: blur(34px);
+  animation: aurora-drift 26s ease-in-out infinite alternate;
+}
+
+/* Grano por encima de la interfaz. Muy sutil: solo mata el degradado plano. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-image: var(--texture-grain);
+  opacity: 0.035;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+#root {
+  position: relative;
+  z-index: 0;
 }
 
 h1,
@@ -35,6 +72,16 @@ h3,
 h4,
 p {
   margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
 }
 
 button,
@@ -52,13 +99,13 @@ button {
 }
 
 a {
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
 a:hover {
-  color: var(--color-accent-hover);
+  color: var(--color-text);
 }
 
 ul {
@@ -68,8 +115,13 @@ ul {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-accent-hover);
   outline-offset: 2px;
+}
+
+::selection {
+  background-color: rgba(139, 92, 246, 0.4);
+  color: #ffffff;
 }
 
 ::-webkit-scrollbar {
@@ -89,6 +141,36 @@ ul {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-text-faint);
+}
+
+/* Etiqueta pequena en versalitas, reutilizada en varios bloques */
+.eyebrow {
+  color: var(--color-text-faint);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.brand-mark {
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 14px rgba(124, 92, 255, 0.45));
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+@keyframes aurora-drift {
+  from {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(3%, 2%, 0) scale(1.08);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

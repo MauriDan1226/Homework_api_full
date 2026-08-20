@@ -2,8 +2,8 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  background-color: rgba(11, 13, 19, 0.82);
-  backdrop-filter: blur(12px);
+  background-color: rgba(6, 6, 10, 0.72);
+  backdrop-filter: blur(18px) saturate(150%);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -24,44 +24,42 @@
   gap: 10px;
 }
 
-.header__logo {
-  width: 28px;
-  height: 28px;
-  background: linear-gradient(140deg, var(--color-accent), #22d3ee);
-  border-radius: 8px;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
-}
-
 .header__brand-name {
+  font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .header__user {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .header__avatar {
+  position: relative;
   display: grid;
   flex-shrink: 0;
   place-items: center;
-  width: 36px;
-  height: 36px;
-  background-color: var(--color-accent-soft);
-  border: 1px solid rgba(99, 102, 241, 0.35);
+  width: 38px;
+  height: 38px;
+  background-image: var(--gradient-brand);
   border-radius: 50%;
-  color: var(--color-accent-hover);
+  box-shadow:
+    0 6px 18px rgba(124, 92, 255, 0.35),
+    var(--edge-light-strong);
+  color: #ffffff;
+  font-family: var(--font-display);
   font-size: 0.78rem;
   font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .header__user-info {
   display: none;
   flex-direction: column;
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 .header__user-name {

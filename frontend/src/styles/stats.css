@@ -6,55 +6,98 @@
 }
 
 .stats__card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 2px;
-  padding: 12px 14px;
+  overflow: hidden;
+  padding: 16px 16px 14px;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--edge-light);
   text-align: left;
   transition:
     background-color var(--transition-fast),
     border-color var(--transition-fast),
-    transform var(--transition-fast);
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+/* Filo de color en la parte superior, apagado hasta que la tarjeta se activa */
+.stats__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background-color: currentColor;
+  opacity: 0.25;
+  transition: opacity var(--transition-base);
 }
 
 .stats__card:hover {
-  background-color: var(--color-surface-hover);
+  background-color: var(--color-surface-raised);
   border-color: var(--color-border-strong);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+}
+
+.stats__card:hover::before {
+  opacity: 0.7;
 }
 
 .stats__card_active {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px var(--color-accent-soft);
+  background-color: var(--color-surface-raised);
+  border-color: var(--color-border-strong);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 14px 34px rgba(0, 0, 0, 0.4),
+    var(--edge-light-strong);
+}
+
+.stats__card_active::before {
+  opacity: 1;
+}
+
+/* El color del filo y de la cifra sale del estado que representa la tarjeta */
+.stats__card {
+  color: var(--color-accent);
+}
+
+.stats__card_pending {
+  color: var(--color-text-muted);
+}
+
+.stats__card_progress {
+  color: var(--color-accent-hover);
+}
+
+.stats__card_done {
+  color: var(--color-success);
 }
 
 .stats__value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-}
-
-.stats__card_pending .stats__value {
   color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 6vw, 2.4rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.05em;
+  line-height: 1;
 }
 
-.stats__card_progress .stats__value {
-  color: #a5a7fa;
-}
-
+.stats__card_progress .stats__value,
 .stats__card_done .stats__value {
-  color: #7fe3c0;
+  color: currentColor;
 }
 
 .stats__label {
-  color: var(--color-text-muted);
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  color: var(--color-text-faint);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
@@ -62,12 +105,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;
   grid-column: 1 / -1;
-  padding: 12px 14px;
+  padding: 16px;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--edge-light);
 }
 
 .stats__progress-head {
@@ -77,29 +121,57 @@
 }
 
 .stats__percent {
-  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
   font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
 }
 
 .stats__bar {
+  position: relative;
   overflow: hidden;
   width: 100%;
-  height: 7px;
-  background-color: var(--color-border);
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-full);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .stats__bar-fill {
+  position: relative;
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-success));
+  overflow: hidden;
+  background-image: var(--gradient-brand);
   border-radius: var(--radius-full);
-  transition: width 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 0 16px rgba(196, 79, 232, 0.5);
+  transition: width var(--transition-slow);
+}
+
+/* Destello que recorre la barra: da sensacion de actividad sin distraer */
+.stats__bar-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.5), transparent 80%);
+  transform: translateX(-100%);
+  animation: stats-shimmer 2.6s ease-in-out infinite;
+}
+
+@keyframes stats-shimmer {
+  0%,
+  55% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @media (min-width: 720px) {
   .stats {
-    grid-template-columns: repeat(4, minmax(0, 1fr)) 1.5fr;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) 1.4fr;
     gap: var(--space-md);
     margin-bottom: var(--space-lg);
   }

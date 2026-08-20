@@ -10,24 +10,28 @@
 }
 
 .not-found__code {
-  background: linear-gradient(120deg, var(--color-accent), #22d3ee);
+  background-image: var(--gradient-brand);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  font-size: 4.5rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 22vw, 8.5rem);
+  font-weight: 700;
+  letter-spacing: -0.07em;
+  line-height: 0.9;
+  filter: drop-shadow(0 12px 40px rgba(124, 92, 255, 0.35));
 }
 
 .not-found__title {
-  font-size: 1.5rem;
+  margin-top: var(--space-sm);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
 }
 
 .not-found__text {
   max-width: 42ch;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
   color: var(--color-text-muted);
 }
