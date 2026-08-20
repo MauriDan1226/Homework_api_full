@@ -17,6 +17,24 @@ cliente como en el servidor.
 - Rutas protegidas en el frontend y verificacion de propietario en cada endpoint del backend.
 - Interfaz oscura, responsive y mobile-first, con estados de carga y mensajes de error visibles.
 
+## Identidad visual
+
+El tema se define con variables CSS en `frontend/src/styles/variables.css`; cambiando ahi los
+tokens cambia toda la interfaz.
+
+| Elemento    | Decision                                                                 |
+| ----------- | ------------------------------------------------------------------------ |
+| Tipografia  | `Space Grotesk` para titulos, cifras y marca; `Inter` para el resto       |
+| Fondo       | Negro frio con una aurora animada, vineta y una capa de grano             |
+| Superficies | Blanco translucido, no grises solidos: recogen el color del fondo         |
+| Acento      | Degradado violeta -> magenta -> ambar, reservado a la accion principal    |
+| Prioridades | Coral (alta), ambar (media) y azul (baja), independientes del acento      |
+
+Las dos ilustraciones viven en `frontend/public`: `aurora.jpg` cubre el panel del acceso y
+`empty-tasks.jpg` acompana al estado vacio. La segunda se funde con el fondo mediante
+`mix-blend-mode: screen` y una mascara radial, asi que necesita un fondo oscuro para verse
+correctamente.
+
 ## Stack
 
 | Capa          | Tecnologia                                        |
