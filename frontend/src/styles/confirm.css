@@ -1,0 +1,11 @@
+.confirm__message {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.confirm__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}

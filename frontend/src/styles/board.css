@@ -1,0 +1,125 @@
+.board {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.board__column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background-color: rgba(18, 21, 31, 0.6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.board__column_drop {
+  background-color: var(--color-accent-soft);
+  border-color: var(--color-accent);
+}
+
+.board__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.board__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.board__column_pending .board__dot {
+  background-color: var(--color-text-faint);
+  box-shadow: 0 0 10px var(--color-text-faint);
+}
+
+.board__column_progress .board__dot {
+  background-color: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent);
+}
+
+.board__column_done .board__dot {
+  background-color: var(--color-success);
+  box-shadow: 0 0 10px var(--color-success);
+}
+
+.board__title {
+  flex: 1;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.board__count {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 24px;
+  padding: 0 8px;
+  background-color: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.board__list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-height: 80px;
+}
+
+.board__item {
+  cursor: grab;
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.board__item:active {
+  cursor: grabbing;
+}
+
+.board__item_dragging {
+  opacity: 0.4;
+  transform: rotate(-1deg) scale(0.98);
+}
+
+.board__empty {
+  display: grid;
+  place-items: center;
+  padding: var(--space-lg) var(--space-sm);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-faint);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.board__empty-action {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.board__empty-action:hover {
+  color: var(--color-accent-hover);
+}
+
+@media (min-width: 900px) {
+  .board {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+  }
+}

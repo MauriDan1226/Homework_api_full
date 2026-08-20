@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import ProtectedRoute from './components/ProtectedRoute';
+import { TasksProvider } from './contexts/TasksProvider';
 import PublicOnlyRoute from './components/PublicOnlyRoute';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -33,7 +34,9 @@ function App() {
         path="/tareas"
         element={
           <ProtectedRoute>
-            <Dashboard />
+            <TasksProvider>
+              <Dashboard />
+            </TasksProvider>
           </ProtectedRoute>
         }
       />

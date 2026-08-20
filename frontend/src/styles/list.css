@@ -1,0 +1,17 @@
+.task-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media (min-width: 720px) {
+  .task-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .task-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

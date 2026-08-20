@@ -1,0 +1,111 @@
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  padding: var(--space-md);
+  background-color: rgba(18, 21, 31, 0.55);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.toolbar__group {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.toolbar__group_filters {
+  flex: 1;
+}
+
+.toolbar__group_actions {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toolbar__field {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 130px;
+}
+
+.toolbar__field_wide {
+  min-width: 190px;
+}
+
+.toolbar__label {
+  color: var(--color-text-faint);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.toolbar .field__select {
+  padding: 9px 12px;
+  padding-right: 34px;
+  font-size: 0.88rem;
+}
+
+.toolbar__switch {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.toolbar__switch-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 9px;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.toolbar__switch-button svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+.toolbar__switch-button:hover {
+  color: var(--color-text);
+}
+
+.toolbar__switch-button_active {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.toolbar__switch-button_active:hover {
+  color: #ffffff;
+}
+
+@media (min-width: 900px) {
+  .toolbar {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .toolbar__group_actions {
+    flex-shrink: 0;
+    gap: var(--space-md);
+  }
+}
