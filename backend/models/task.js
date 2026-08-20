@@ -66,4 +66,12 @@ taskSchema.pre('save', function syncCompletedAt(next) {
   next();
 });
 
+// owner es interno: se selecciona en el servidor para validar permisos pero
+// nunca forma parte de la respuesta.
+taskSchema.methods.toJSON = function toJSON() {
+  const task = this.toObject();
+  delete task.owner;
+  return task;
+};
+
 module.exports = mongoose.model('task', taskSchema);

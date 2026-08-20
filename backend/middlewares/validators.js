@@ -34,11 +34,17 @@ const validateCreateTask = celebrate({
     title: Joi.string().required().min(2).max(100).messages({
       'any.required': 'El titulo es obligatorio',
       'string.empty': 'El titulo es obligatorio',
+      'string.min': 'El titulo debe tener al menos 2 caracteres',
+      'string.max': 'El titulo no puede superar los 100 caracteres',
     }),
     description: Joi.string().allow('').max(1000),
-    priority: Joi.string().valid(...TASK_PRIORITIES),
-    status: Joi.string().valid(...TASK_STATUSES),
-    dueDate: Joi.date().allow(null, ''),
+    priority: Joi.string()
+      .valid(...TASK_PRIORITIES)
+      .messages({ 'any.only': 'La prioridad debe ser baja, media o alta' }),
+    status: Joi.string()
+      .valid(...TASK_STATUSES)
+      .messages({ 'any.only': 'El estado debe ser pendiente, en progreso o completada' }),
+    dueDate: Joi.date().allow(null, '').messages({ 'date.base': 'La fecha limite no es valida' }),
   }),
 });
 
@@ -46,11 +52,18 @@ const validateUpdateTask = celebrate({
   [Segments.PARAMS]: Joi.object().keys({ id: objectId.required() }),
   [Segments.BODY]: Joi.object()
     .keys({
-      title: Joi.string().min(2).max(100),
+      title: Joi.string().min(2).max(100).messages({
+        'string.min': 'El titulo debe tener al menos 2 caracteres',
+        'string.max': 'El titulo no puede superar los 100 caracteres',
+      }),
       description: Joi.string().allow('').max(1000),
-      priority: Joi.string().valid(...TASK_PRIORITIES),
-      status: Joi.string().valid(...TASK_STATUSES),
-      dueDate: Joi.date().allow(null, ''),
+      priority: Joi.string()
+        .valid(...TASK_PRIORITIES)
+        .messages({ 'any.only': 'La prioridad debe ser baja, media o alta' }),
+      status: Joi.string()
+        .valid(...TASK_STATUSES)
+        .messages({ 'any.only': 'El estado debe ser pendiente, en progreso o completada' }),
+      dueDate: Joi.date().allow(null, '').messages({ 'date.base': 'La fecha limite no es valida' }),
     })
     .min(1)
     .messages({ 'object.min': 'Debes enviar al menos un campo para actualizar' }),
