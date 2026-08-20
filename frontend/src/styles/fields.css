@@ -1,0 +1,98 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field__label {
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.field__input,
+.field__textarea,
+.field__select {
+  width: 100%;
+  padding: 11px 14px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: 0.95rem;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.field__textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.field__select {
+  appearance: none;
+  padding-right: 36px;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-text-muted) 50%),
+    linear-gradient(135deg, var(--color-text-muted) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% + 2px),
+    calc(100% - 13px) calc(50% + 2px);
+  background-size:
+    5px 5px,
+    5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.field__input:hover,
+.field__textarea:hover,
+.field__select:hover {
+  border-color: var(--color-border-strong);
+}
+
+.field__input:focus,
+.field__textarea:focus,
+.field__select:focus {
+  background-color: var(--color-surface-raised);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
+  outline: none;
+}
+
+.field__input::placeholder,
+.field__textarea::placeholder {
+  color: var(--color-text-faint);
+}
+
+.field__input:disabled,
+.field__textarea:disabled,
+.field__select:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.field__input_invalid,
+.field__textarea_invalid {
+  border-color: var(--color-danger);
+}
+
+.field__input_invalid:focus,
+.field__textarea_invalid:focus {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 3px var(--color-danger-soft);
+}
+
+.field__error {
+  color: var(--color-danger);
+  font-size: 0.8rem;
+}
+
+/* El icono nativo del selector de fecha es oscuro sobre fondo oscuro */
+.field__input[type='date']::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.7);
+}
