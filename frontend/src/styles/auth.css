@@ -78,7 +78,38 @@
   font-weight: 600;
 }
 
+/* En movil el panel decorativo no se oculta: se convierte en el fondo a pantalla
+   completa, con el video en bucle detras del formulario. */
 .auth__aside {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.auth__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Velo sobre el video. En movil es denso porque el formulario va justo encima. */
+.auth__aside::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(6, 6, 10, 0.96) 12%, rgba(6, 6, 10, 0.8) 55%, rgba(6, 6, 10, 0.88) 100%),
+    rgba(6, 6, 10, 0.38);
+}
+
+/* El texto del panel solo tiene sentido cuando es una columna aparte */
+.auth__aside .auth__quote,
+.auth__aside .auth__highlights,
+.auth__aside-glow {
   display: none;
 }
 
@@ -107,8 +138,11 @@
     padding: var(--space-xl);
   }
 
+  /* En escritorio vuelve a ser una columna del grid, ya no el fondo */
   .auth__aside {
     position: relative;
+    inset: auto;
+    z-index: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -116,9 +150,6 @@
     overflow: hidden;
     padding: var(--space-2xl);
     background-color: var(--color-bg-elevated);
-    background-image: url('/aurora.jpg');
-    background-size: cover;
-    background-position: 58% center;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
     box-shadow:
@@ -127,11 +158,32 @@
     animation: auth-aside-in 700ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  /* Velo que oscurece la mitad inferior para que el texto se lea siempre */
+  /* El zoom de entrada va sobre el video y no sobre el panel: el panel recorta
+     lo que se sale, mientras que escalarlo a el añadia scroll a la pagina. */
+  .auth__aside .auth__video {
+    animation: auth-video-in 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @keyframes auth-video-in {
+    from {
+      transform: scale(1.06);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  .auth__aside .auth__quote {
+    display: block;
+  }
+
+  .auth__aside .auth__highlights,
+  .auth__aside .auth__aside-glow {
+    display: flex;
+  }
+
+  /* Aqui el velo solo oscurece la mitad inferior, donde apoya el texto */
   .auth__aside::after {
-    content: '';
-    position: absolute;
-    inset: 0;
     background: linear-gradient(
       to top,
       rgba(6, 6, 10, 0.94) 8%,
@@ -194,11 +246,23 @@
   @keyframes auth-aside-in {
     from {
       opacity: 0;
-      transform: scale(1.04);
     }
     to {
       opacity: 1;
-      transform: scale(1);
     }
+  }
+}
+
+/* Un video en bucle sigue moviendose aunque se anulen las animaciones CSS, asi
+   que aqui se retira y se deja solo el fotograma fijo. */
+@media (prefers-reduced-motion: reduce) {
+  .auth__video {
+    display: none;
+  }
+
+  .auth__aside {
+    background-image: url('/aurora-poster.jpg');
+    background-size: cover;
+    background-position: center;
   }
 }

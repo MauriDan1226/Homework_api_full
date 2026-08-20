@@ -30,10 +30,16 @@ tokens cambia toda la interfaz.
 | Acento      | Degradado violeta -> magenta -> ambar, reservado a la accion principal    |
 | Prioridades | Coral (alta), ambar (media) y azul (baja), independientes del acento      |
 
-Las dos ilustraciones viven en `frontend/public`: `aurora.jpg` cubre el panel del acceso y
-`empty-tasks.jpg` acompana al estado vacio. La segunda se funde con el fondo mediante
-`mix-blend-mode: screen` y una mascara radial, asi que necesita un fondo oscuro para verse
-correctamente.
+Los recursos graficos viven en `frontend/public`:
+
+- `aurora-loop.mp4` (2,7 MB) es el fondo en bucle de las pantallas de acceso y registro. Va
+  silenciado, con `playsinline` y `preload="metadata"`; en movil ocupa toda la pantalla detras
+  del formulario y en escritorio se queda en la columna decorativa.
+- `aurora-poster.jpg` es el primer fotograma del video. Sirve de `poster` mientras carga y
+  sustituye al video cuando el sistema pide reducir el movimiento.
+- `empty-tasks.jpg` acompana al estado vacio. Se funde con el fondo mediante
+  `mix-blend-mode: screen` y una mascara radial, asi que necesita un fondo oscuro para verse
+  correctamente.
 
 ## Stack
 
