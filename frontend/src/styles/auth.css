@@ -87,6 +87,8 @@
   overflow: hidden;
 }
 
+/* Son dos copias superpuestas del mismo clip; la opacidad de cada una la
+   gobierna AuroraBackdrop fotograma a fotograma para tapar el corte del bucle. */
 .auth__video {
   position: absolute;
   inset: 0;
@@ -94,6 +96,7 @@
   height: 100%;
   object-fit: cover;
   pointer-events: none;
+  will-change: opacity;
 }
 
 /* Velo sobre el video. En movil es denso porque el formulario va justo encima. */

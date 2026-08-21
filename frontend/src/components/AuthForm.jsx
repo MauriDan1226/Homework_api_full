@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Alert from './Alert';
+import AuroraBackdrop from './AuroraBackdrop';
 import BrandMark from './BrandMark';
 import '../styles/auth.css';
 
@@ -140,20 +141,7 @@ function AuthForm({ isSignUp, onSubmit, isSubmitting, errorMessage, onDismissErr
       </section>
 
       <aside className="auth__aside" aria-hidden="true">
-        {/* En movil este panel es el fondo de toda la pantalla; en escritorio,
-            la columna decorativa. El poster es el primer fotograma del propio
-            video, para que no se note el relevo cuando arranca. */}
-        <video
-          className="auth__video"
-          src="/aurora-loop.mp4"
-          poster="/aurora-poster.jpg"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          tabIndex={-1}
-        />
+        <AuroraBackdrop />
         <div className="auth__aside-glow" />
         <blockquote className="auth__quote">
           Un tablero, tres columnas y todo tu trabajo bajo control.
