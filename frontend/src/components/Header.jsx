@@ -20,7 +20,7 @@ function Header() {
       <div className="header__inner">
         <div className="header__brand">
           <BrandMark size={28} />
-          <span className="header__brand-name">Tareas</span>
+          <span className="header__brand-name">Nébula</span>
         </div>
 
         <div className="header__user">

@@ -58,7 +58,7 @@ function AuthForm({ isSignUp, onSubmit, isSubmitting, errorMessage, onDismissErr
       <section className="auth__panel">
         <div className="auth__brand">
           <BrandMark size={32} />
-          <span className="auth__brand-name">Tareas</span>
+          <span className="auth__brand-name">Nébula</span>
         </div>
 
         <h1 className="auth__title">{isSignUp ? 'Crea tu cuenta' : 'Bienvenido de nuevo'}</h1>

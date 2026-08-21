@@ -1,8 +1,13 @@
-# web_project_hw_api_full
+# Nebula
+
+**Tu trabajo, en orden.**
 
 Gestor de tareas completo con autenticacion de usuarios, tablero Kanban y vista de lista. Cada
 persona registrada gestiona unicamente sus propias tareas: la propiedad se comprueba tanto en el
 cliente como en el servidor.
+
+El nombre viene de la identidad visual: un fondo de aurora en movimiento y una marca formada por
+tres columnas de tablero que, juntas, dibujan una `n`.
 
 ## Caracteristicas
 
@@ -29,12 +34,18 @@ tokens cambia toda la interfaz.
 | Superficies | Blanco translucido, no grises solidos: recogen el color del fondo         |
 | Acento      | Degradado violeta -> magenta -> ambar, reservado a la accion principal    |
 | Prioridades | Coral (alta), ambar (media) y azul (baja), independientes del acento      |
+| Marca       | Tres columnas en violeta, magenta y ambar que dibujan una `n`             |
+
+La marca es un SVG en linea (`components/BrandMark.jsx`) y no una imagen, para que herede el
+tamano del contexto y no pierda nitidez. El favicon es la misma marca sobre una placa oscura, que
+le da contraste en las pestanas del navegador con tema claro.
 
 Los recursos graficos viven en `frontend/public`:
 
-- `aurora-loop.mp4` (2,7 MB) es el fondo en bucle de las pantallas de acceso y registro. Va
-  silenciado, con `playsinline` y `preload="metadata"`; en movil ocupa toda la pantalla detras
-  del formulario y en escritorio se queda en la columna decorativa.
+- `aurora-loop.mp4` (2,7 MB) es el fondo en bucle de las pantallas de acceso y registro. Ocupa la
+  pantalla completa en las dos resoluciones, va silenciado y con `playsinline`. Se pintan dos
+  copias desfasadas media vuelta y se cruza la opacidad entre ellas, porque el primer y el ultimo
+  fotograma del clip no coinciden y el bucle a secas dejaba un corte visible.
 - `aurora-poster.jpg` es el primer fotograma del video. Sirve de `poster` mientras carga y
   sustituye al video cuando el sistema pide reducir el movimiento.
 - `empty-tasks.jpg` acompana al estado vacio. Se funde con el fondo mediante
@@ -54,7 +65,7 @@ Los recursos graficos viven en `frontend/public`:
 ## Estructura del proyecto
 
 ```
-web_project_hw_api_full/
+nebula/
 ├── backend/
 │   ├── controllers/      Logica de usuarios y tareas
 │   ├── models/           Esquemas de Mongoose

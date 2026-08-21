@@ -1,5 +1,5 @@
 {
-  "name": "web-project-api-full-backend",
+  "name": "nebula-backend",
   "version": "1.0.0",
   "description": "REST API for the task manager application",
   "main": "app.js",
