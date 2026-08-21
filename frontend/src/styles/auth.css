@@ -124,13 +124,14 @@
   }
 }
 
-/* A partir de tablet grande, el panel decorativo pasa a ser una imagen a
-   sangre con el texto encima. */
+/* A partir de tablet grande el formulario se retira a la izquierda y aparece
+   el texto de apoyo sobre el video. */
 @media (min-width: 900px) {
+  /* El panel decorativo esta fuera del flujo, asi que la segunda columna queda
+     vacia a proposito: es la que mantiene el formulario en la mitad izquierda. */
   .auth {
     grid-template-columns: 1fr 1.05fr;
     padding: var(--space-md);
-    gap: var(--space-md);
   }
 
   .auth__panel {
@@ -138,23 +139,15 @@
     padding: var(--space-xl);
   }
 
-  /* En escritorio vuelve a ser una columna del grid, ya no el fondo */
+  /* En escritorio el video sigue ocupando toda la pantalla. Este bloque solo
+     coloca el texto: el relleno izquierdo lo empuja a la mitad derecha para
+     que no se cruce con el formulario. */
   .auth__aside {
-    position: relative;
-    inset: auto;
-    z-index: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     gap: var(--space-lg);
-    overflow: hidden;
-    padding: var(--space-2xl);
-    background-color: var(--color-bg-elevated);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    box-shadow:
-      var(--shadow-lg),
-      var(--edge-light);
+    padding: var(--space-2xl) var(--space-2xl) var(--space-2xl) 54%;
     animation: auth-aside-in 700ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
@@ -182,14 +175,25 @@
     display: flex;
   }
 
-  /* Aqui el velo solo oscurece la mitad inferior, donde apoya el texto */
+  /* Dos velos cruzados: uno vertical que asienta el texto de abajo y otro
+     horizontal que oscurece la franja izquierda, donde va el formulario. En el
+     centro derecho apenas tapan, que es donde interesa ver el video. */
   .auth__aside::after {
-    background: linear-gradient(
-      to top,
-      rgba(6, 6, 10, 0.94) 8%,
-      rgba(6, 6, 10, 0.55) 38%,
-      rgba(6, 6, 10, 0) 68%
-    );
+    background:
+      linear-gradient(
+        to top,
+        rgba(6, 6, 10, 0.82) 4%,
+        rgba(6, 6, 10, 0.3) 45%,
+        rgba(6, 6, 10, 0.2) 100%
+      ),
+      linear-gradient(
+        to right,
+        rgba(6, 6, 10, 0.95) 0%,
+        rgba(6, 6, 10, 0.9) 30%,
+        rgba(6, 6, 10, 0.66) 48%,
+        rgba(6, 6, 10, 0.26) 68%,
+        rgba(6, 6, 10, 0.32) 100%
+      );
   }
 
   .auth__aside-glow {
